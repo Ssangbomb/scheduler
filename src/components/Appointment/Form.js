@@ -25,8 +25,18 @@ export default function Form(props) {
       return;
     }
 
+    if (interviewer === null) {
+      setError("Please select an interviewer");
+      return;
+    }
+
     setError("");
     props.onSave(name, interviewer);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    validate();
   }
 
   return (
@@ -57,7 +67,7 @@ export default function Form(props) {
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onClick={validate}>
+          <Button confirm onClick={handleSubmit}>
             Save
           </Button>
         </section>
